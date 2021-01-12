@@ -29,6 +29,8 @@
           StructField("birthDate", LongType, true)::
           StructField("ss", LongType, true)::
           StructField("salary", LongType, true):: Nil )
+      
+        nameDF.groupBy("salary").count().sort($"count".desc).show(2).save("src/main/resources/people.csv")
 
       val nameWithOwnSchema = spark.read
         .option("header", "true")
